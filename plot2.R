@@ -34,12 +34,10 @@ my_data[, DateTime := ymd_hms(my_data$Date + my_data$Time)]
 
 #### Plotting
 ## Opens the png device, reduces the marging (for there will be no title nor label on the
-## x axis), then plots an empty scatterplot of the Global_active_power per DateTime and adds
-## lines conecting the values.
+## x axis), then plots a line plot of the Global_active_power per DateTime
 png("plot2.png")
 with(my_data, plot(DateTime, Global_active_power,
                    ylab = "Global Active Power (kilowatts)",
                    xlab = "",
-                   type = "n"))
-with(my_data, lines(DateTime, Global_active_power))
+                   type = "l"))
 dev.off()

@@ -38,37 +38,34 @@ my_data[, DateTime := ymd_hms(my_data$Date + my_data$Time)]
 png("plot4.png")
 par(mfcol = c(2,2))
 
-# First plot (equal to plot2)
-with(my_data, plot(DateTime, Global_active_power,
-                   ylab = "Global Active Power",
-                   xlab = "",
-                   type = "n"))
-with(my_data, lines(DateTime, Global_active_power))
-
-# Second plot (equal to plot3)
-with(my_data, plot(DateTime, Sub_metering_1,
-                   ylab = "Energy sub metering",
-                   xlab = "",
-                   type = "n"))
-with(my_data, lines(DateTime, Sub_metering_1))
-with(my_data, lines(DateTime, Sub_metering_2, col = "red"))
-with(my_data, lines(DateTime, Sub_metering_3, col = "blue"))
-legend("topright",
-       lty = c(1 , 1, 1),
-       col = c("black", "red", "blue"),
-       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
-       bty = "n")
-
-# Third plot
-with(my_data, plot(DateTime, Voltage,
-                   xlab = "datetime",
-                   type = "n"))
-with(my_data, lines(DateTime, Voltage))
-
-# Fourth plot
-with(my_data, plot(DateTime, Global_reactive_power,
-                   xlab = "datetime",
-                   type = "n"))
-with(my_data, lines(DateTime, Global_reactive_power))
-
+with(my_data, {
+    # First plot (equal to plot2)
+    plot(DateTime, Global_active_power,
+         ylab = "Global Active Power",
+         xlab = "",
+         type = "l")
+    
+    # Second plot (equal to plot3)
+    plot(DateTime, Sub_metering_1,
+         ylab = "Energy sub metering",
+         xlab = "",
+         type = "l")
+    lines(DateTime, Sub_metering_2, col = "red")
+    lines(DateTime, Sub_metering_3, col = "blue")
+    legend("topright",
+           lty = c(1 , 1, 1),
+           col = c("black", "red", "blue"),
+           legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+           bty = "n")
+    
+    # Third plot
+    plot(DateTime, Voltage,
+         xlab = "datetime",
+         type = "l")
+    
+    # Fourth plot
+    plot(DateTime, Global_reactive_power,
+         xlab = "datetime",
+         type = "l")
+})
 dev.off()

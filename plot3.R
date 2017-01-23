@@ -36,19 +36,20 @@ my_data[, DateTime := ymd_hms(my_data$Date + my_data$Time)]
 ## Opens the png device, reduces the marging (for there will be no title nor label on the
 ## x axis), then plots an empty scatterplot of the Sub_metering_1/2/3 per DateTime and adds
 ## lines conecting the values
-## Note: Sub_metering_1 is used to create the empty initial plot, for it has the highest
+## Note: Sub_metering_1 is used to create the initial plot, for it has the highest
 ## values and will, therefore, be the best to scale the y-axis
 ## At the end, adds a legend
 png("plot3.png")
-with(my_data, plot(DateTime, Sub_metering_1,
-                   ylab = "Energy sub metering",
-                   xlab = "",
-                   type = "n"))
-with(my_data, lines(DateTime, Sub_metering_1))
-with(my_data, lines(DateTime, Sub_metering_2, col = "red"))
-with(my_data, lines(DateTime, Sub_metering_3, col = "blue"))
-legend("topright",
-       lty = c(1 , 1, 1),
-       col = c("black", "red", "blue"),
-       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+with(my_data, {
+    plot(DateTime, Sub_metering_1,
+         ylab = "Energy sub metering",
+         xlab = "",
+         type = "l")
+    lines(DateTime, Sub_metering_2, col = "red")
+    lines(DateTime, Sub_metering_3, col = "blue")
+    legend("topright",
+           lty = c(1 , 1, 1),
+           col = c("black", "red", "blue"),
+           legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+})
 dev.off()

@@ -26,9 +26,6 @@ my_data <- my_data[, Date := dmy(Date)]
 #### Subsetting the data for the dates 01-02-2007 and 02-02-2007 (dd-mm-yyyy)
 my_data <- my_data[Date %in% dmy(c("01-02-2007", "02-02-2007"))]
 
-#### Coercing the Time column into 'period' class
-my_data <- my_data[, Time := hms(Time)]
-
 #### Plotting
 ## Opens the png device, then plots a histogram of the Global_active_power variable and closes the device
 png("plot1.png")
